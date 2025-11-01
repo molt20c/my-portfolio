@@ -1,0 +1,184 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f4f6f8;
+  color: #333;
+  line-height: 1.7;
+}
+
+/* Header */
+header {
+  background-color: #222;
+  color: #fff;
+  text-align: center;
+  padding: 1.5rem 0;
+}
+
+header h1 {
+  font-size: 2rem;
+  letter-spacing: 1px;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+nav a:hover {
+  color: #00b4d8;
+}
+
+/* Sections */
+main {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.intro, .content {
+  background: #fff;
+  padding: 1.5rem 2rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  margin-bottom: 2rem;
+}
+
+.content h2, .intro h2 {
+  border-left: 5px solid #00b4d8;
+  padding-left: 10px;
+  margin-bottom: 1rem;
+}
+
+/* Projects */
+.project-list {
+  display: grid;
+  gap: 1rem;
+}
+
+/* Gallery */
+.image-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+
+.image-box {
+  border-radius: 10px;
+  overflow: hidden; /* ensures images respect border radius */
+  background: #eaeaea; 
+}
+
+.image-box img {
+  width: 100%;      /* image fills the width of container */
+  height: 200px;    /* fixed height for uniform grid */
+  object-fit: cover; /* crops image if needed to fill the box */
+  display: block;
+}
+
+
+
+
+
+
+/* Pong Section */
+.pong-section {
+  max-width: 900px;
+  margin: 2rem auto;
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.pong-menu {
+  margin-bottom: 1rem;
+}
+
+.pong-menu button {
+  background: #00b4d8;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  margin: 0 5px;
+}
+
+.pong-menu button:hover {
+  background: #0091ad;
+}
+
+.scoreboard {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+#pong {
+  background-color: black;
+  border-radius: 8px;
+  display: block;
+  margin: 0 auto;
+}
+
+/* Footer */
+footer {
+  background-color: #222;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.9rem;
+}
+
+
+body.dark-mode {
+  background-color: #121212;
+  color: #eee;
+}
+
+body.dark-mode header,
+body.dark-mode footer,
+body.dark-mode .content,
+body.dark-mode .pong-section {
+  background-color: #1e1e1e;
+  color: #eee;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+}
+
+body.dark-mode .image-box {
+  background-color: #2a2a2a;
+}
+
+body.dark-mode nav a {
+  color: #fff;
+}
+
+body.dark-mode .intro {
+  background-color: #1e1e1e;  /* dark background */
+  color: #eee;                 /* light text */
+}
+
+body.dark-mode header nav a {
+  color: #fff; /* make nav links light */
+}
+
+body.dark-mode header nav a:hover {
+  color: #00b4d8; /* hover color can stay bright */
+}
+
+
