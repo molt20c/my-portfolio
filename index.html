@@ -75,6 +75,63 @@
       </div>
     </section>
 
+    <section id="color-detector">
+  <h2>🎨 Image Color Picker</h2>
+  <input type="file" id="imageUpload" accept="image/*">
+  <br><br>
+  <canvas id="colorCanvas"></canvas>
+  <p>HEX: <span id="hexColor">#000000</span></p>
+  <p>RGB: <span id="rgbColor">rgb(0,0,0)</span></p>
+</section>
+
+<script>
+  const imageUpload = document.getElementById('imageUpload');
+  const canvas = document.getElementById('colorCanvas');
+  const ctx = canvas.getContext('2d');
+  const hexColor = document.getElementById('hexColor');
+  const rgbColor = document.getElementById('rgbColor');
+
+  // When user uploads an image
+  imageUpload.addEventListener('change', (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    const img = new Image();
+    img.onload = function() {
+      canvas.width = img.width;
+      canvas.height = img.height;
+      ctx.drawImage(img, 0, 0);
+    };
+    img.src = URL.createObjectURL(file);
+  });
+
+  // When user clicks on the image
+  canvas.addEventListener('click', (e) => {
+    const rect = canvas.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const pixel = ctx.getImageData(x, y, 1, 1).data;
+
+    const r = pixel[0];
+    const g = pixel[1];
+    const b = pixel[2];
+
+    const hex = rgbToHex(r, g, b);
+
+    hexColor.textContent = hex;
+    rgbColor.textContent = `rgb(${r}, ${g}, ${b})`;
+    document.body.style.backgroundColor = hex; // optional preview
+  });
+
+  function rgbToHex(r, g, b) {
+    return "#" + [r, g, b].map(x => {
+      const hex = x.toString(16);
+      return hex.length === 1 ? '0' + hex : hex;
+    }).join('');
+  }
+</script>
+
+
     <section id="gallery" class="content gallery">
   <h2>Gallery 📸</h2>
   <div class="image-grid">
@@ -121,6 +178,7 @@
   <script src="pong.js"></script>
 </body>
 </html>
+
 
 
 
