@@ -68,18 +68,6 @@ main {
   gap: 1rem;
 }
 
-#color-detector {
-  margin: 20px auto;
-  text-align: center;
-}
-
-#colorCanvas {
-  max-width: 100%;
-  border: 2px solid #444;
-  margin-top: 10px;
-  cursor: crosshair;
-}
-
 
 /* Gallery */
 .image-grid {
@@ -101,10 +89,6 @@ main {
   object-fit: cover; /* crops image if needed to fill the box */
   display: block;
 }
-
-
-
-
 
 
 /* Pong Section */
@@ -192,6 +176,91 @@ body.dark-mode header nav a {
 
 body.dark-mode header nav a:hover {
   color: #00b4d8; /* hover color can stay bright */
+}
+
+/* 🎨 Image Color Picker Styles */
+#color-detector {
+  text-align: center;
+  margin: 40px auto;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  max-width: 500px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.2);
+}
+
+.upload-box {
+  margin-bottom: 15px;
+}
+
+.upload-label {
+  display: inline-block;
+  background: linear-gradient(135deg, #4a90e2, #357abd);
+  color: white;
+  padding: 12px 25px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.upload-label:hover {
+  background: linear-gradient(135deg, #5aa0ff, #4a90e2);
+}
+
+.canvas-container {
+  display: flex;
+  justify-content: center;
+}
+
+#colorCanvas {
+  max-width: 100%;
+  border-radius: 12px;
+  margin-top: 10px;
+  cursor: crosshair;
+}
+
+.color-info {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.color-display {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 2px solid #ccc;
+}
+
+.color-values {
+  font-family: monospace;
+  color: #ddd;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.copy-btn {
+  background: #357abd;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: 0.2s;
+}
+
+.copy-btn:hover {
+  background: #4a90e2;
+}
+
+@media (prefers-color-scheme: dark) {
+  #color-detector {
+    background: rgba(0, 0, 0, 0.4);
+  }
 }
 
 
