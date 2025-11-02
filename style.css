@@ -68,6 +68,19 @@ main {
   gap: 1rem;
 }
 
+#color-detector {
+  margin: 20px auto;
+  text-align: center;
+}
+
+#colorCanvas {
+  max-width: 100%;
+  border: 2px solid #444;
+  margin-top: 10px;
+  cursor: crosshair;
+}
+
+
 /* Gallery */
 .image-grid {
   display: grid;
@@ -180,5 +193,6 @@ body.dark-mode header nav a {
 body.dark-mode header nav a:hover {
   color: #00b4d8; /* hover color can stay bright */
 }
+
 
 
