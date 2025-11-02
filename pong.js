@@ -125,14 +125,6 @@ darkModeBtn.addEventListener("click", () => {
 });
 
 
-// Resize Pong canvas on mobile
-function resizePongCanvas() {
-  const container = document.getElementById('pongContainer');
-  const canvas = document.getElementById('pongCanvas');
-  canvas.width = Math.min(600, container.offsetWidth); // max 600px
-  canvas.height = 400 * (canvas.width / 600); // maintain ratio
-}
 
-window.addEventListener('resize', resizePongCanvas);
-window.addEventListener('load', resizePongCanvas);
+
 
