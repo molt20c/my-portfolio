@@ -75,7 +75,7 @@
       </div>
     </section>
 
-   <section id="color-detector">
+  <section id="color-detector">
   <h2>🎨 Image Color Picker</h2>
 
   <div class="upload-box">
@@ -92,6 +92,7 @@
     <div class="color-values">
       <p>HEX: <span id="hexColor">#000000</span></p>
       <p>RGB: <span id="rgbColor">rgb(0,0,0)</span></p>
+      <button class="copy-btn" id="copyColor">Copy HEX</button>
     </div>
   </div>
 </section>
@@ -103,20 +104,20 @@
   const hexColor = document.getElementById('hexColor');
   const rgbColor = document.getElementById('rgbColor');
   const colorDisplay = document.getElementById('colorDisplay');
+  const copyColor = document.getElementById('copyColor');
 
-  // Custom upload button trigger
+  // Custom upload button
   document.querySelector('.upload-label').addEventListener('click', () => {
     imageUpload.click();
   });
 
-  // When user uploads image
+  // Upload image and draw to canvas
   imageUpload.addEventListener('change', (e) => {
     const file = e.target.files[0];
     if (!file) return;
 
     const img = new Image();
     img.onload = function() {
-      // Scale down large images to fit canvas area
       const maxWidth = 400;
       const scale = Math.min(maxWidth / img.width, 1);
       const width = img.width * scale;
@@ -128,19 +129,27 @@
     img.src = URL.createObjectURL(file);
   });
 
-  // When user clicks on image
+  // Detect color on click
   canvas.addEventListener('click', (e) => {
     const rect = canvas.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
     const pixel = ctx.getImageData(x, y, 1, 1).data;
-
     const [r, g, b] = pixel;
     const hex = rgbToHex(r, g, b);
 
     hexColor.textContent = hex;
     rgbColor.textContent = `rgb(${r}, ${g}, ${b})`;
     colorDisplay.style.backgroundColor = hex;
+  });
+
+  // Copy color to clipboard
+  copyColor.addEventListener('click', () => {
+    const colorText = hexColor.textContent;
+    navigator.clipboard.writeText(colorText).then(() => {
+      copyColor.textContent = "✅ Copied!";
+      setTimeout(() => (copyColor.textContent = "Copy HEX"), 1500);
+    });
   });
 
   function rgbToHex(r, g, b) {
@@ -150,6 +159,7 @@
     }).join('');
   }
 </script>
+
 
 
 
@@ -200,6 +210,7 @@
   <script src="pong.js"></script>
 </body>
 </html>
+
 
 
 
