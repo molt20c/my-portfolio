@@ -75,13 +75,25 @@
       </div>
     </section>
 
-    <section id="color-detector">
+   <section id="color-detector">
   <h2>🎨 Image Color Picker</h2>
-  <input type="file" id="imageUpload" accept="image/*">
-  <br><br>
-  <canvas id="colorCanvas"></canvas>
-  <p>HEX: <span id="hexColor">#000000</span></p>
-  <p>RGB: <span id="rgbColor">rgb(0,0,0)</span></p>
+
+  <div class="upload-box">
+    <label for="imageUpload" class="upload-label">📁 Upload an Image</label>
+    <input type="file" id="imageUpload" accept="image/*" hidden>
+  </div>
+
+  <div class="canvas-container">
+    <canvas id="colorCanvas"></canvas>
+  </div>
+
+  <div class="color-info">
+    <div class="color-display" id="colorDisplay"></div>
+    <div class="color-values">
+      <p>HEX: <span id="hexColor">#000000</span></p>
+      <p>RGB: <span id="rgbColor">rgb(0,0,0)</span></p>
+    </div>
+  </div>
 </section>
 
 <script>
@@ -90,37 +102,45 @@
   const ctx = canvas.getContext('2d');
   const hexColor = document.getElementById('hexColor');
   const rgbColor = document.getElementById('rgbColor');
+  const colorDisplay = document.getElementById('colorDisplay');
 
-  // When user uploads an image
+  // Custom upload button trigger
+  document.querySelector('.upload-label').addEventListener('click', () => {
+    imageUpload.click();
+  });
+
+  // When user uploads image
   imageUpload.addEventListener('change', (e) => {
     const file = e.target.files[0];
     if (!file) return;
 
     const img = new Image();
     img.onload = function() {
-      canvas.width = img.width;
-      canvas.height = img.height;
-      ctx.drawImage(img, 0, 0);
+      // Scale down large images to fit canvas area
+      const maxWidth = 400;
+      const scale = Math.min(maxWidth / img.width, 1);
+      const width = img.width * scale;
+      const height = img.height * scale;
+      canvas.width = width;
+      canvas.height = height;
+      ctx.drawImage(img, 0, 0, width, height);
     };
     img.src = URL.createObjectURL(file);
   });
 
-  // When user clicks on the image
+  // When user clicks on image
   canvas.addEventListener('click', (e) => {
     const rect = canvas.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
     const pixel = ctx.getImageData(x, y, 1, 1).data;
 
-    const r = pixel[0];
-    const g = pixel[1];
-    const b = pixel[2];
-
+    const [r, g, b] = pixel;
     const hex = rgbToHex(r, g, b);
 
     hexColor.textContent = hex;
     rgbColor.textContent = `rgb(${r}, ${g}, ${b})`;
-    document.body.style.backgroundColor = hex; // optional preview
+    colorDisplay.style.backgroundColor = hex;
   });
 
   function rgbToHex(r, g, b) {
@@ -130,6 +150,8 @@
     }).join('');
   }
 </script>
+
+
 
 
     <section id="gallery" class="content gallery">
@@ -178,6 +200,7 @@
   <script src="pong.js"></script>
 </body>
 </html>
+
 
 
 
