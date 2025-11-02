@@ -318,16 +318,6 @@ body.dark-mode header nav a:hover {
     margin: 0 auto;
   }
 
-  /* PONG GAME */
-  #pongContainer {
-    width: 100%;
-    overflow: hidden;
-  }
-
-  #pongCanvas {
-    width: 100% !important;
-    height: auto !important;
-  }
 
   /* COLOR PICKER */
   #colorCanvas {
@@ -365,6 +355,7 @@ body.dark-mode header nav a:hover {
     font-size: 12px;
   }
 }
+
 
 
 
